@@ -19,18 +19,25 @@ class CountdownTimer {
     this.selector = selector;
     this.targetDate = Date.parse(targetDate);
     this.timerId = null;
-    this.start();
   };
 
   start() {
+    const startTime = this.targetDate;
+
     this.timerId = setInterval(() => {
-      const currentTime = Date.now()
-      let time = this.targetDate - currentTime;
-      this.updateClock(this.getNewTime(time));
+      const currentTime = Date.now();
+      const time = startTime - currentTime;
+      this.updateClock(this.getTimeElements(time));
+
+      if (startTime <= currentTime) {
+        clearInterval(this.timerId);
+        this.updateClock(this.getTimeElements(0));
+        console.log('Задана дата из прошлого, отсчёт невозможен');
+      }
     }, 1000);
   };
 
-  getNewTime(time) {
+  getTimeElements(time) {
     const days = this.pad(Math.floor(time / (1000 * 60 * 60 * 24)));
     const hours = this.pad(Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)));
     const mins = this.pad(Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)));
@@ -50,7 +57,7 @@ class CountdownTimer {
   };
 };
 
-const timer = new CountdownTimer('#timer-1', 'Jul 17, 2022');
+const timer = new CountdownTimer('#timer-1', 'Aug 14, 2022');
 
 timer.start();
 
