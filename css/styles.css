@@ -11,10 +11,11 @@
 }
 
 .label {
-  font-size: 20px;
+  font-size: 18px;
+  color: rgb(78, 75, 80);
 }
 
 .value {
   text-align: center;
-  font-size: 80px;
+  font-size: 90px;
 }
