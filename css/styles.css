@@ -1,11 +1,12 @@
 body {
-  background-color: rgba(78, 131, 161, 0.315);
-  font-family: Tahoma, sans-serif;
+  background-color: rgba(167, 65, 65, 0.795);
+  font-family: 'Arial Narrow Bold', sans-serif;
+  font-size: 20px;
 }
 
 .title {
   text-align: center;
-  color: rgb(53, 30, 30);
+  color: rgb(255, 255, 255);
 }
 
 .wrapper {
@@ -22,7 +23,7 @@ body {
 
 .label {
   font-size: 18px;
-  color: rgb(78, 75, 80);
+  color: rgb(255, 255, 255);
 }
 
 .value {
