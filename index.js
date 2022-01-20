@@ -61,67 +61,76 @@
 
 // timer.start();
 
-
-
 // ИЗ ЗАНЯТИЯ С МЕНТОРОМ
 class CountdownTimer {
   constructor({ selector, targetDate }) {
-    this.selector = selector;
-    this.targetDate = targetDate;
-    this.timerId = null;
-  };
+    this.selector = selector
+    this.targetDate = targetDate
+    this.timerId = null
+  }
 
-  getRefs () {
-    const container = document.querySelector(this.selector);
-    const days = container.querySelector('[data-value="days"]');
-    const hours = container.querySelector('[data-value="hours"]');
-    const mins = container.querySelector('[data-value="mins"]');
-    const secs = container.querySelector('[data-value="secs"]');
-    const wrapper = container.querySelector('.wrapper');
-    const startBtn = container.querySelector('.start');
-    const stopBtn = container.querySelector('.stop');
-    return { wrapper, container, days, hours, mins, secs, startBtn, stopBtn };
-  };
+  getRefs() {
+    const container = document.querySelector(this.selector)
+    const days = container.querySelector('[data-value="days"]')
+    const hours = container.querySelector('[data-value="hours"]')
+    const mins = container.querySelector('[data-value="mins"]')
+    const secs = container.querySelector('[data-value="secs"]')
+    const wrapper = container.querySelector('.wrapper')
+    const startBtn = container.querySelector('.start')
+    const stopBtn = container.querySelector('.stop')
+    return { wrapper, container, days, hours, mins, secs, startBtn, stopBtn }
+  }
 
   updateTimer({ wrapper, days, hours, mins, secs }) {
-    const time = this.targetDate - Date.now();
+    const time = this.targetDate - Date.now()
     if (time < 0) {
-      this.stop();
-       const markup = `<h1>Время вышло</h1>`;
-       wrapper.innerHTML = markup;
-      return;
-    };
+      this.stop()
+      const markup = `<h1>Время вышло</h1>`
+      wrapper.innerHTML = markup
+      return
+    }
 
-    days.textContent = Math.floor(time / (1000 * 60 * 60 * 24)).toString().padStart(2, '0') +  `:`;
-    hours.textContent = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0') + `:`;
-    mins.textContent = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0') +`:`;
-    secs.textContent = Math.floor((time % (1000 * 60)) / 1000).toString().padStart(2, '0');
-  };
+    days.textContent =
+      Math.floor(time / (1000 * 60 * 60 * 24))
+        .toString()
+        .padStart(2, '0') + `:`
+    hours.textContent =
+      Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        .toString()
+        .padStart(2, '0') + `:`
+    mins.textContent =
+      Math.floor((time % (1000 * 60 * 60)) / (1000 * 60))
+        .toString()
+        .padStart(2, '0') + `:`
+    secs.textContent = Math.floor((time % (1000 * 60)) / 1000)
+      .toString()
+      .padStart(2, '0')
+  }
 
   start() {
-    console.log("Start");
+    console.log('Start')
     this.timerId = setInterval(() => {
-      this.updateTimer(this.getRefs());
-    }, 1000);
-  };
+      this.updateTimer(this.getRefs())
+    }, 1000)
+  }
 
   stop() {
-    console.log("Stop");
-    clearInterval(this.timerId);
-  };
+    console.log('Stop')
+    clearInterval(this.timerId)
+  }
 
   addListeners() {
-    this.getRefs().startBtn.addEventListener('click', this.start.bind(this));
-    this.getRefs().stopBtn.addEventListener('click', this.stop.bind(this));
-};
-};
+    this.getRefs().startBtn.addEventListener('click', this.start.bind(this))
+    this.getRefs().stopBtn.addEventListener('click', this.stop.bind(this))
+  }
+}
 
 const timer = new CountdownTimer({
   selector: '#timer-1',
-  targetDate: new Date('Jan 01, 2022, 00:00:00'),
-});
+  targetDate: new Date('Jan 01, 2023, 00:00:00'),
+})
 
-timer.addListeners();
+timer.addListeners()
 
 // const timer2 = new CountdownTimer({
 //   selector: '#timer-2',
@@ -129,3 +138,16 @@ timer.addListeners();
 // });
 
 // timer2.addListeners();
+
+const person = {
+  firstName: 'bob',
+  showName() {
+    console.log(this.firstName)
+  },
+}
+
+const foo = function (callback) {
+  callback()
+}
+
+foo(person.showName)
